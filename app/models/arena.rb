@@ -1,4 +1,4 @@
 class Arena < ApplicationRecord
 
-  validates :name, uniqueness: true
+  validates :arena_name, uniqueness: true
 end

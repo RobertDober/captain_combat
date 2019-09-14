@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :player do
-    player_name { "MyString" }
-    hitpoints { 1 }
-    strength { 1 }
+    player_name
+    hitpoints { Random.rand(Player::HITPOINTS_RANGE) }
+    strength { Random.rand(Player::STRENGTH_RANGE) }
   end
 end

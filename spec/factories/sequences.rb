@@ -7,4 +7,5 @@ FactoryBot.define do
   end
 
   make_sequence :arena_name
+  make_sequence :player_name
 end

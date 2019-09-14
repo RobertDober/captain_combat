@@ -1,7 +1,6 @@
 class ArenasController < ApplicationController
   # Useful in the BO
   # before_action :set_arena, only: [:show, :edit, :update, :destroy]
-  before_action :set_arena, only: :show
 
   # Useful in the BO
   # def index
@@ -10,6 +9,7 @@ class ArenasController < ApplicationController
 
   # Useful in the BO
   def show
+    @arena = Arena.order(:id).last
   end
 
   # Useful in the BO

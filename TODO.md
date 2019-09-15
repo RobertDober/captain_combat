@@ -1,3 +1,10 @@
-[X] Install Gems pry-byebug and rspec-rails
 
-[ ] Create Github Tickets per User Story
+# Issue #3 Ready? Fight!
+
+- [x] Seed players
+
+- [ ] Implement player selection UI
+
+- [ ] Implement fight algorithm
+
+- [ ] Show fight outcome

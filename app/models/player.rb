@@ -12,5 +12,18 @@ class Player < ApplicationRecord
 
   validates :hitpoints, inclusion: { in: HITPOINTS_RANGE }
   validates :strength, inclusion: { in: STRENGTH_RANGE }
+
+  validate :current_hitpoints_range
+
+
+
+  private
+
+  def current_hitpoints_range
+    if current_hitpoints.negative? || current_hitpoints > hitpoints
+      errors.add(:current_hitpoints,
+                 "current_hitpoints are #{current_hitpoints}, but must be in 0..#{hitpoints}")
+    end
+  end
     
 end

@@ -23,6 +23,16 @@ RSpec.describe Player, type: :model do
         expect( build(:player, hitpoints: Player::MAX_HITPOINTS.succ )).not_to be_valid
       end
     end
+    context "current_hitpoints" do
+      it "needs a certain minimum" do
+        player = build(:player)
+        player.current_hitpoints = player.hitpoints.succ
+        expect(player).not_to be_valid
+      end
+      it "too much is too much, though" do
+        expect( build(:player, hitpoints: Player::MAX_HITPOINTS.succ )).not_to be_valid
+      end
+    end
 
     context "player_name" do
       it "is needed, really" do

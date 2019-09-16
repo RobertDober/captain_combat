@@ -16,7 +16,7 @@ class Player < ApplicationRecord
   validate :current_hitpoints_range
 
   scope :alive, -> { where('current_hitpoints > 0') }
-  # One day, may friends, one happy day Rails v42 will
+  # One day, may friends, one happy day, Rails v42 will
   # implement a predicate for each scope, until then...
   def alive?; current_hitpoints > 0 end
 

@@ -12,13 +12,17 @@
   <% end %>
 
   <div class="field">
+    <% values = Player.limit(10).pluck(:player_name, :id)
+    options = options_for_select(values)
+  %>
     <%= form.label :player1 %>
-    <%= form.select :player1_id, Player.alive.limit(10).pluck(:player_name, :id) %>
+    <%= require 'pry'; binding.pry; 
+     select_tag :player1_id, options %>
   </div>
 
   <div class="field">
     <%= form.label :player2 %>
-    <%= form.select :player2_id, Player.alive.limit(10).pluck(:player_name, :id) %>
+    <%= select_tag :player2_id, options %>
   </div>
 
 

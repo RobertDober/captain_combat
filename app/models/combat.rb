@@ -1,10 +1,6 @@
 class Combat < ApplicationRecord
-   belongs_to :player1, class_name: "Player", validate: true
-   belongs_to :player2, class_name: "Player", validate: true
 
    has_many :turns
-
-   validate :uniqueness_of_players
 
    def run
      [[player1, player2], [player2, player1]]
@@ -25,6 +21,12 @@ class Combat < ApplicationRecord
        recap
      end
    end
+   
+   # Virtual atts
+   def player1_id; nil end
+   def player1_id= _; nil end
+   def player2_id; nil end
+   def player2_id= _; nil end
 
    private
 
@@ -53,12 +55,6 @@ class Combat < ApplicationRecord
 
    def recap
      "#{winner.player_name} won, remaining health: #{winner.current_hitpoints}"
-   end
-
-   def uniqueness_of_players
-     if player1_id == player2_id
-       errors.add(:base, "The same player cannot combat herself")
-     end
    end
 
    def winner

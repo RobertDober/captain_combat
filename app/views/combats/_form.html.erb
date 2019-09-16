@@ -16,13 +16,12 @@
     options = options_for_select(values)
   %>
     <%= form.label :player1 %>
-    <%= require 'pry'; binding.pry; 
-     select_tag :player1_id, options %>
+    <%= form.select :player1_id, options %>
   </div>
 
   <div class="field">
     <%= form.label :player2 %>
-    <%= select_tag :player2_id, options %>
+    <%= form.select :player2_id, options %>
   </div>
 
 

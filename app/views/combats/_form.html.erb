@@ -1,0 +1,28 @@
+<%= form_for(@combat) do |form| %>
+  <% if @combat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@combat.errors.count, "error") %> prohibited this combat from being saved:</h2>
+
+      <ul>
+        <% @combat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :player1 %>
+    <%= form.select :player1_id, Player.alive.limit(10).pluck(:player_name, :id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :player2 %>
+    <%= form.select :player2_id, Player.alive.limit(10).pluck(:player_name, :id) %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -45,4 +45,18 @@ RSpec.describe Player, type: :model do
     end
 
   end
+
+  describe "alive or not alive" do
+    it "is definitely alive" do
+      expect( build :player ).to be_alive
+    end
+    it "He's dead, Jim!" do
+      expect( build :player, current_hitpoints: 0 ).not_to be_alive
+    end
+    it "one to count them all?" do
+      players = [0, Player::MIN_HITPOINTS, 0]
+        .map{ |hp| create :player, current_hitpoints: hp }
+      expect( described_class.alive.pluck(:current_hitpoints) ).to eq([Player::MIN_HITPOINTS])
+    end
+  end
 end

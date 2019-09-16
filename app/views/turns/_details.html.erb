@@ -1,0 +1,17 @@
+<table class="turn-details">
+  <thead>
+    <tr>
+      <td>Attacker</td>
+      <td>hit</td>
+      <td>with</td>
+      <td>new health</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% combat.turns.order(:id).each do |turn| %>
+      <tr>
+        <%= render "turns/detail", turn: turn %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

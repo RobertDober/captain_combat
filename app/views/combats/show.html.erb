@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<section class="combat-main">
+  <h4>Combat Recap</h4>
+  <p>
+    <%= @combat.result %>
+  </p>
+</section>
+<section class="combat-details">
+<%= render "turns/details", combat: @combat %> 
+</section>
+
+<%= link_to "Launch a new fight", new_combat_path %> 
+<%= link_to 'Home', root_path %>

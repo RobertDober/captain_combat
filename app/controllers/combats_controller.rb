@@ -15,13 +15,12 @@ class CombatsController < ApplicationController
   # POST /combats.json
   def create
     @combat = Combat.new()
-      require 'pry'; binding.pry
     
-    BattleService.validate(@combat, combat_params)
+    BattleService.new(@combat, combat_params).run
 
     respond_to do |format|
       if @combat.valid?
-        format.html { redirect_to @combat.run(combat_params), notice: 'Battle finished.' }
+        format.html { redirect_to @combat, notice: 'Battle finished.' }
       else
         format.html { render :new }
       end

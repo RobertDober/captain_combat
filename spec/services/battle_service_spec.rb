@@ -52,4 +52,34 @@ RSpec.describe BattleService do
       end
     end
   end
+
+  describe "usage of weapons" do
+    let(:player1) { create :player }
+    let(:player2) { create :player }
+    let(:weapon1)  { create :weapon }
+    let(:weapon2)  { create :weapon }
+
+    before do
+      @combat = create(:combat)
+      # bs stands for BattleService, really, no kidding!!!
+      @bs     = BattleService.new combat,
+        "player1_id" => player1.id,
+        "player2_id" => player2.id,
+        "weapon1_id" => weapon1.id, 
+        "weapon2_id" => weapon2.id
+      @bs.run
+    end
+
+    context "recorded turns" do
+      it "first attacker was player1" do
+        expect(combat.turns.first.attacker_name).to eq(player1.player_name)
+      end
+      it "first attacker's weapon was weapon1" do
+        expect(combat.turns.first.weapon_name).to eq(weapon1.equipment_name)
+      end
+      it "last turn's defender's health was not too good" do
+        expect(combat.turns.last.hitpoints_left ).to be_zero
+      end
+    end
+  end
 end

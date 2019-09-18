@@ -12,18 +12,27 @@
 
     <%= link_to "Launch a new battle", new_combat_path %> 
   <% else %>
+    <% player_values = Player.limit(10).pluck(:player_name, :id)
+       player_options = options_for_select(player_values)
+       weapon_values = [["---", 0]] + Equipment.weapons.limit(10).pluck(:equipment_name, :id) 
+       weapon_options = options_for_select(weapon_values) %>
     <div class="field">
-      <% values = Player.limit(10).pluck(:player_name, :id)
-      options = options_for_select(values)
-    %>
+      <%# TODO: Refactor into a helper %>
       <%= form.label :player1 %>
-      <%= form.select :player1_id, options %>
+      <%= form.select :player1_id, player_options %>
+    </div>
+    <div class="field">
+      <%= form.label :weapon1 %>
+      <%= form.select :weapon1_id, weapon_options %>
     </div>
 
     <div class="field">
       <%= form.label :player2 %>
-      <%= form.select :player2_id, options %>
-
+      <%= form.select :player2_id, player_options %>
+    </div>
+    <div class="field">
+      <%= form.label :weapon2 %>
+      <%= form.select :weapon2_id, weapon_options %>
     </div>
 
 

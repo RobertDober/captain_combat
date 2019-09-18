@@ -16,10 +16,13 @@ RSpec.describe "Complete Battle Cycle (after error)", type: :system do
       assert_selector "h4", text: "Configure your battle"
       find( '#combat_player1_id' ).select( player1.player_name )
       find( '#combat_player2_id' ).select( player2.player_name )
+      find( '#combat_weapon1_id' ).select( "---" )
+      find( '#combat_weapon2_id' ).select( "---" )
       click_on "Start your battle"
       assert_selector "h4", text: "Battle recap"
       within("tbody>tr:last-child") do |last_row|
         assert_selector "td:first-child", text: last_turn.attacker_name
+        assert_selector "td:nth-child(3)", text: "nothing"
         assert_selector "td:last-child", text: "dead"
       end
       click_on "Launch a new battle"

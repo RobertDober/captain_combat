@@ -35,6 +35,6 @@ class CombatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def combat_params
-      params.require(:combat).permit(:player1_id, :player2_id)
+      params.require(:combat).permit(:player1_id, :player2_id, :weapon1_id, :weapon2_id)
     end
 end

@@ -7,6 +7,7 @@ class Combat < ApplicationRecord
    end
    
    # Virtual atts
-   attr_accessor :player1_id, :player2_id
+   attr_accessor :player1_id, :player2_id, :weapon1_id, :weapon2_id
+
 
 end

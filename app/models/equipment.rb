@@ -7,6 +7,7 @@ class Equipment < ApplicationRecord
 
   validate :utility
 
+  scope :weapons, -> { where("defense_strength = 0") }
 
   private
 

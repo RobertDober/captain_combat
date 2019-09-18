@@ -14,6 +14,15 @@ RSpec.describe Equipment, type: :model do
     end
 
     skip "equipment_name must be unique"
+    skip "equipment needs to be either a weapon or a shield, yes that's right this is an **xor**"
+  end
 
+  describe "weapons scope" do
+    let!(:weapon) { create :equipment, attack_strength: described_class::MAX_ATTACK } 
+    let!(:shield) { create :equipment, attack_strength: 0 }
+
+    it "contains only the weapon" do
+      expect( described_class.weapons.pluck(:id) ).to eq([ weapon.id ])
+    end
   end
 end

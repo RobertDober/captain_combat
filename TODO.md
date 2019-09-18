@@ -1,10 +1,24 @@
+# Issue #4 
+
+- [x] Remove unnecessary persistant data (e.g. `Player#current_hitpoints`, `Combat.belongs_to(:player<n>)`)
+
+- [x] Create `BattleService`
+
+- [ ] Create `Equipment` model
+
+- [ ] Adapt `BattleService` to usage of `Equipment` 
+
+- [ ] Adapt controllers and views to usage of `Equipment`
+
 
 # Issue #3 Ready? Fight!
 
 - [x] Seed players
 
-- [ ] Implement player selection UI
+- [x] Implement player selection UI
 
-- [ ] Implement fight algorithm
+- [x] Implement fight algorithm
 
-- [ ] Show fight outcome
+- [x] Show fight outcome
+
+

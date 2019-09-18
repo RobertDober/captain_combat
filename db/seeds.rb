@@ -11,13 +11,20 @@ module Seeder extend self
   def seed_arena
     FactoryBot.create :arena
   end
+  def seed_equipment
+    ->(_) { FactoryBot.create :equipment }
+  end
   def seed_player
     ->(_) { FactoryBot.create :player }
   end
 end
 
 Seeder.seed_arena unless Arena.count.positive?
+
 PLAYER_STOCK=10
-(1..(PLAYER_STOCK-Player.alive.count)).each(&Seeder.seed_player)
+(1..PLAYER_STOCK).each(&Seeder.seed_player) unless Player.any?
+
+EQUIPMENT_STOCK=10
+(1..EQUIPMENT_STOCK).each(&Seeder.seed_equipment) unless Equipment.any?
 
 

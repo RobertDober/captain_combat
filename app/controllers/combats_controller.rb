@@ -14,11 +14,13 @@ class CombatsController < ApplicationController
   # POST /combats
   # POST /combats.json
   def create
-    @combat = Combat.new(combat_params)
+    @combat = Combat.create!
+    
+    BattleService.new(@combat, combat_params).run
 
     respond_to do |format|
-      if @combat.save
-        format.html { redirect_to @combat.run, notice: 'Combat was successfully created.' }
+      if @combat.custom_errors.empty?
+        format.html { redirect_to @combat, notice: 'Battle finished.' }
       else
         format.html { render :new }
       end

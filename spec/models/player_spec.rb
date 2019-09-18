@@ -23,16 +23,6 @@ RSpec.describe Player, type: :model do
         expect( build(:player, hitpoints: Player::MAX_HITPOINTS.succ )).not_to be_valid
       end
     end
-    context "current_hitpoints" do
-      it "needs a certain minimum" do
-        player = build(:player)
-        player.current_hitpoints = player.hitpoints.succ
-        expect(player).not_to be_valid
-      end
-      it "too much is too much, though" do
-        expect( build(:player, hitpoints: Player::MAX_HITPOINTS.succ )).not_to be_valid
-      end
-    end
 
     context "player_name" do
       it "is needed, really" do
@@ -46,17 +36,4 @@ RSpec.describe Player, type: :model do
 
   end
 
-  describe "alive or not alive" do
-    it "is definitely alive" do
-      expect( build :player ).to be_alive
-    end
-    it "He's dead, Jim!" do
-      expect( build :player, current_hitpoints: 0 ).not_to be_alive
-    end
-    it "one to count them all?" do
-      players = [0, Player::MIN_HITPOINTS, 0]
-        .map{ |hp| create :player, current_hitpoints: hp }
-      expect( described_class.alive.pluck(:current_hitpoints) ).to eq([Player::MIN_HITPOINTS])
-    end
-  end
 end

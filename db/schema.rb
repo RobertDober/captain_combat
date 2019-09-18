@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_072330) do
+ActiveRecord::Schema.define(version: 2019_09_17_200659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,17 @@ ActiveRecord::Schema.define(version: 2019_09_16_072330) do
   end
 
   create_table "combats", force: :cascade do |t|
-    t.bigint "player1_id", null: false
-    t.bigint "player2_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["player1_id"], name: "index_combats_on_player1_id"
-    t.index ["player2_id"], name: "index_combats_on_player2_id"
+    t.text "result"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "equipment_name"
+    t.integer "attack_strength"
+    t.integer "defense_strength"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -37,7 +42,13 @@ ActiveRecord::Schema.define(version: 2019_09_16_072330) do
     t.integer "strength"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "current_hitpoints"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_profiles_on_player_id"
   end
 
   create_table "turns", force: :cascade do |t|
@@ -51,6 +62,5 @@ ActiveRecord::Schema.define(version: 2019_09_16_072330) do
     t.index ["combat_id"], name: "index_turns_on_combat_id"
   end
 
-  add_foreign_key "combats", "players", column: "player1_id"
-  add_foreign_key "combats", "players", column: "player2_id"
+  add_foreign_key "profiles", "players"
 end

@@ -8,7 +8,8 @@ require 'battle_service/validator'
 
 
   def run
-    raise RuntimeError, "illegal combat:#{combat.custom_errors.join("\n")}" unless combat.custom_errors.empty? 
+    validate
+    return unless combat.custom_errors.empty? 
     do_run
     combat.update result: result
   end
